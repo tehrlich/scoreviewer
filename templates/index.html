@@ -1,0 +1,428 @@
+<!--
+Copyright (C) 2012 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aram Khachaturian: Armenian Dances</title>
+  <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+        media="screen">
+  <link href="/static/bootstrap/css/bootstrap-responsive.min.css"
+        rel="stylesheet" media="screen">
+  <link href="/static/main.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">Aram Khachaturian: Armenian Dances</a>
+
+      <div class="nav-collapse collapse">
+        <form class="navbar-form pull-right" action="/signout" method="post">
+          <button type="submit" class="btn">Sign out</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  {% if message %}
+  <div class="alert alert-info">{{ message }}</div>
+  {% endif %}
+
+  <h1>Timeline History</h1>
+  <div class="row">
+
+    <div style="margin-top: 5px;">
+
+      {% if timelineItems %}
+        {% for timelineItem in timelineItems %}
+        <div class="span4">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th>ID</th>
+                <td>{{ timelineItem.id }}</td>
+              </tr>
+              <tr>
+                <th>Text</th>
+                <td>{{ timelineItem.text|e }}</td>
+              </tr>
+              <tr>
+                <th>HTML</th>
+                <td>{{ timelineItem.html|e }}</td>
+              </tr>
+              <tr>
+                <th>Attachments</th>
+                <td>
+                  {% for attachment in timelineItem.attachments %}
+                    {% if attachment.contentType.startswith('image') %}
+                    <img src="/attachmentproxy?attachment={{ attachment.id }}&timelineItem={{ timelineItem.id }}">
+                    {% else %}
+                    <a href="/attachmentproxy?attachment={{ attachment.id }}&timelineItem={{ timelineItem.id }}">Download</a>
+                    {% endif %}
+                  {% endfor %}
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <form action="/" method="post">
+                    <input type="hidden" name="itemId" value="{{ timelineItem.id }}">
+                    <input type="hidden" name="operation" value="deleteTimelineItem">
+                    <button class="btn btn-block btn-danger" type="submit">
+                      Delete Item
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        {% endfor %}
+      {% else %}
+      <div class="span12">
+        <div class="alert alert-info">
+          No recent additions.
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="span4">
+<!-- START KACH SCORE -!-->
+
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/1.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 1
+          <img class="button-icon" src="/static/images/1.jpg">
+        </button>
+      </form>
+
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/2.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 2
+          <img class="button-icon" src="/static/images/2.jpg">
+        </button>
+      </form>
+
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/3.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 3
+          <img class="button-icon" src="/static/images/3.jpg">
+        </button>
+      </form>
+
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/4.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 4
+          <img class="button-icon" src="/static/images/4.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/5.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 5
+          <img class="button-icon" src="/static/images/5.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/6.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 6
+          <img class="button-icon" src="/static/images/6.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/7.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 7
+          <img class="button-icon" src="/static/images/7.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/8.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 8
+          <img class="button-icon" src="/static/images/8.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/9.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 9
+          <img class="button-icon" src="/static/images/9.jpg">
+        </button>
+      </form>
+    </div>
+    <div class="span4">
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/10.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 10
+          <img class="button-icon" src="/static/images/10.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/11.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 11
+          <img class="button-icon" src="/static/images/11.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/12.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 12
+          <img class="button-icon" src="/static/images/12.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/13.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 13
+          <img class="button-icon" src="/static/images/13.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/14.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 14
+          <img class="button-icon" src="/static/images/14.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/15.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 15
+          <img class="button-icon" src="/static/images/15.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/16.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 16
+          <img class="button-icon" src="/static/images/16.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/17.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 17
+          <img class="button-icon" src="/static/images/17.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/18.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 18
+          <img class="button-icon" src="/static/images/18.jpg">
+        </button>
+      </form>
+    </div>
+    <div class="span4">
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/19.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 19
+          <img class="button-icon" src="/static/images/19.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/20.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 20
+          <img class="button-icon" src="/static/images/20.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/21.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 21
+          <img class="button-icon" src="/static/images/21.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/22.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 22
+          <img class="button-icon" src="/static/images/22.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/23.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 23
+          <img class="button-icon" src="/static/images/23.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/24.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 24
+          <img class="button-icon" src="/static/images/24.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/25.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 25
+          <img class="button-icon" src="/static/images/25.jpg">
+        </button>
+      </form>
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/26.jpg">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Insert page 26
+          <img class="button-icon" src="/static/images/26.jpg">
+        </button>
+      </form>
+
+      <form action="/" method="post">
+        <input type="hidden" name="operation" value="insertItem">
+        <input type="hidden" name="message" value="">
+        <input type="hidden" name="imageUrl" value="/static/images/g1.png">
+        <input type="hidden" name="contentType" value="image/jpeg">
+
+        <button class="btn btn-block" type="submit">
+          Gazebo page 1
+          <img class="button-icon" src="/static/images/g1.png">
+        </button>
+      </form>
+
+
+<!-- END KACH SCORE -!-->
+
+</div>
+  </div>
+</div>
+
+<script
+    src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
